@@ -1,6 +1,3 @@
-/*
-autor: Jonas Dhein
-*/
 
 public class Funcoes {
     
