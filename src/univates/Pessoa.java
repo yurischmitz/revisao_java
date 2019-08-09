@@ -48,6 +48,9 @@ public class Pessoa {
         this.telefone = telefone;
     }
     
-    
+    public String toString(){
+        return "\nCodigo: " + this.codigo + "\nNome: " + this.nome + "\nEndereço: " + this.endereco + 
+                "\nTelefone: " + this.telefone;
+    }
     
 }
