@@ -20,21 +20,16 @@ public class ClassePrincipal {
     pessoa1.setNome("Yuri");
     pessoa1.setEndereco("Nova Bréscia");
     pessoa1.setTelefone(982168484);
-    
-        /*.out.println("Código: " + pessoa1.getCodigo() +
-                "\nNome: " + pessoa1.getNome() +
-                "\nEndereço: " + pessoa1.getEndereco() + 
-                "\nTelefone: " + pessoa1.getTelefone());*/
+    pessoa1.setValorConta(500);
         
     pessoa2.setCodigo(2);
     pessoa2.setNome("Jonas");
     pessoa2.setEndereco("Encantado");
     pessoa2.setTelefone(956832424);
+    pessoa2.setValorConta(500);
+   
     
-        /*System.out.println("\nCódigo: " + pessoa2.getCodigo() +
-                "\nNome: " + pessoa2.getNome() +
-                "\nEndereço: " + pessoa2.getEndereco() + 
-                "\nTelefone: " + pessoa2.getTelefone());*/
+    
         System.out.println(pessoa1);
         System.out.println(pessoa2);
         

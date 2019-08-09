@@ -15,6 +15,7 @@ public class Pessoa {
     private String nome;
     private String endereco;
     private int telefone;
+    private double valorConta;
 
     public int getCodigo() {
         return codigo;
@@ -47,10 +48,18 @@ public class Pessoa {
     public void setTelefone(int telefone) {
         this.telefone = telefone;
     }
+
+    public double getValorConta() {
+        return valorConta;
+    }
+
+    public void setValorConta(double valorConta) {
+        this.valorConta = valorConta;
+    }
+    
     
     public String toString(){
-        return "\nCodigo: " + this.codigo + "\nNome: " + this.nome + "\nEndereço: " + this.endereco + 
-                "\nTelefone: " + this.telefone;
+        return "\nNome: " + this.nome + "\nSaldo: " + this.valorConta;
     }
     
 }

@@ -5,15 +5,26 @@
  */
 package univates;
 
+import java.util.Random;
+
 /**
  *
  * @author yuri.schmitz
  */
 public class RevisaoJava {
-    
+
     //método de inicialização da classe
     public static void main(String[] args) {
-        
+
+        //instância um objeto da classe Random usando o construtor básico
+        //Exige importação da classe java.util.Random
+        Random gerador = new Random();
+
+        //imprime sequência de 10 números inteiros aleatórios entre 0 e 5
+        for (int i = 0; i < 10; i++) {
+            System.out.println(gerador.nextInt(5) + 1);
+        }
+
         System.out.println("Olá Mundo");
         int resultado = Funcoes.somarNumeros(1, 2);
         System.out.println("Resultado = " + resultado);
@@ -72,5 +83,5 @@ public class RevisaoJava {
     public static void imprimirMensagem(String par1){
         System.out.println();
     }
-    
+
 }
