@@ -5,8 +5,6 @@
  */
 package univates;
 
-import com.sun.org.apache.xalan.internal.xsltc.cmdline.getopt.GetOpt;
-
 /**
  *
  * @author yuri.schmitz
@@ -21,7 +19,7 @@ public class ClassePrincipal {
     pessoa1.setCodigo(1);
     pessoa1.setNome("Yuri");
     pessoa1.setEndereco("Lajeado");
-    pessoa1.setTelefone("956835642");
+    pessoa1.setTelefone(956835642);
     
         System.out.println("Código: " + pessoa1.getCodigo() +
                 "\nNome: " + pessoa1.getNome() +
@@ -30,7 +28,7 @@ public class ClassePrincipal {
     pessoa2.setCodigo(2);
     pessoa2.setNome("Jonas");
     pessoa2.setEndereco("Encantado");
-    pessoa2.setTelefone("956832424");
+    pessoa2.setTelefone(956832424);
     
         System.out.println("\nCódigo: " + pessoa2.getCodigo() +
                 "\nNome: " + pessoa2.getNome() +
