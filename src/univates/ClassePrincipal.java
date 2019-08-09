@@ -5,6 +5,8 @@
  */
 package univates;
 
+import com.sun.org.apache.xalan.internal.xsltc.cmdline.getopt.GetOpt;
+
 /**
  *
  * @author yuri.schmitz
@@ -12,6 +14,36 @@ package univates;
 public class ClassePrincipal {
     
     public static void main(String[] args) {
+        
+    Pessoa pessoa1 = new Pessoa();
+    Pessoa pessoa2 = new Pessoa();
+    
+    pessoa1.setCodigo(1);
+    pessoa1.setNome("Yuri");
+    pessoa1.setEndereco("Lajeado");
+    pessoa1.setTelefone("956835642");
+    
+        System.out.println("Código: " + pessoa1.getCodigo() +
+                "\nNome: " + pessoa1.getNome() +
+                "\nEndereço: " + pessoa1.getEndereco() + "\nTelefone: " + pessoa1.getTelefone());
+        
+    pessoa2.setCodigo(2);
+    pessoa2.setNome("Jonas");
+    pessoa2.setEndereco("Encantado");
+    pessoa2.setTelefone("956832424");
+    
+        System.out.println("\nCódigo: " + pessoa2.getCodigo() +
+                "\nNome: " + pessoa2.getNome() +
+                "\nEndereço: " + pessoa2.getEndereco() + 
+                "\nTelefone: " + pessoa2.getTelefone());
+        
+        
+        
+        
+        
+        
+        
+        /*
         soma(2, 3);//imprima o resultado na tela
         subtrai(3, 3);//mesma coisa
         
@@ -56,4 +88,6 @@ public class ClassePrincipal {
         int subtrai = n1 - n2;
         System.out.println("Subtração de dois números: " + subtrai);
     }
+    */
+}
 }
