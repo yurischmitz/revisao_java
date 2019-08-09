@@ -14,7 +14,7 @@ public class Pessoa {
     private int codigo;
     private String nome;
     private String endereco;
-    private String telefone;
+    private int telefone;
 
     public int getCodigo() {
         return codigo;
@@ -40,11 +40,11 @@ public class Pessoa {
         this.endereco = endereco;
     }
 
-    public String getTelefone() {
+    public int getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(String telefone) {
+    public void setTelefone(int telefone) {
         this.telefone = telefone;
     }
     
