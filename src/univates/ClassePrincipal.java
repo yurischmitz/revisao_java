@@ -21,18 +21,40 @@ public class ClassePrincipal {
     pessoa1.setEndereco("Nova Bréscia");
     pessoa1.setTelefone(982168484);
     pessoa1.setValorConta(500);
-        
+       
+    
     pessoa2.setCodigo(2);
     pessoa2.setNome("Jonas");
     pessoa2.setEndereco("Encantado");
     pessoa2.setTelefone(956832424);
     pessoa2.setValorConta(500);
-   
     
+    
+    //Valor a depsitar na conta da pessoa 1
+    pessoa2.setDebito(0);
+    //Valor a depositar na conta da pessoa2
+    pessoa1.setDebito(0);
+    
+    
+    
+    //Debito na conta da pessoa1
+    if(pessoa2.getValorConta() > pessoa2.getDebito()){
+        pessoa1.setValorConta(pessoa1.getValorConta() + pessoa2.getDebito());
+        pessoa2.setValorConta(pessoa2.getValorConta() - pessoa2.getDebito());
+    }
+    
+    //Debito na conta da pessoa2
+    if(pessoa1.getValorConta() > pessoa1.getDebito()){
+        pessoa2.setValorConta(pessoa2.getValorConta() + pessoa1.getDebito());
+        pessoa1.setValorConta(pessoa1.getValorConta() - pessoa1.getDebito());
+    }
     
         System.out.println(pessoa1);
+        System.out.println("-----------------------------------------");
         System.out.println(pessoa2);
-        
+
+    
+ 
         
         
         
