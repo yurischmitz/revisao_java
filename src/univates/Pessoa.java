@@ -10,21 +10,14 @@ package univates;
  * @author yuri.schmitz
  */
 public class Pessoa {
-    
-    private int codigo;
+   
     private String nome;
-    private String endereco;
-    private int telefone;
-    private double valorConta;
+    private double saldo;
+    private double debito;
+    private double recebeu;
 
-    public int getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
+    
+    
     public String getNome() {
         return nome;
     }
@@ -33,33 +26,32 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public double getSaldo() {
+        return saldo;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
     }
 
-    public int getTelefone() {
-        return telefone;
+    public double getDebito() {
+        return debito;
     }
 
-    public void setTelefone(int telefone) {
-        this.telefone = telefone;
+    public void setDebito(double debito) {
+        this.debito = debito;
     }
 
-    public double getValorConta() {
-        return valorConta;
+    public double getRecebeu() {
+        return recebeu;
     }
 
-    public void setValorConta(double valorConta) {
-        this.valorConta = valorConta;
+    public void setRecebeu(double recebeu) {
+        this.recebeu = recebeu;
     }
     
     
     public String toString(){
-        return "\nNome: " + this.nome + "\nSaldo: " + this.valorConta;
+        return "Nome: " + this.nome + "\nSaldo: " + this.saldo + "\nDepositou: " + this.debito + "\nRecebeu: " + this.recebeu + "\n-------------------";
     }
-    
 }

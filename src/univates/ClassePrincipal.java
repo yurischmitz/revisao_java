@@ -15,56 +15,41 @@ public class ClassePrincipal {
 
         Pessoa pessoa1 = new Pessoa();
         Pessoa pessoa2 = new Pessoa();
-
-        pessoa1.setCodigo(1);
+         
+         
         pessoa1.setNome("Yuri");
-        pessoa1.setEndereco("Nova Bréscia");
-        pessoa1.setTelefone(982168484);
-        pessoa1.setValorConta(500);
-
-        pessoa2.setCodigo(2);
-        pessoa2.setNome("Jonas");
-        pessoa2.setEndereco("Encantado");
-        pessoa2.setTelefone(956832424);
-        pessoa2.setValorConta(500);
-
-        
-        //Valor a depsitar na conta da pessoa 1
-        pessoa2.setDebito(0);
-        //Valor a depositar na conta da pessoa2
+        pessoa1.setSaldo(1000);
         pessoa1.setDebito(0);
-        
-        
-        
-        if(pessoa2.getDebito() > 0 && pessoa1.getDebito() > 0){
-            System.out.println("\n\tERRO!\n\tÉ POSSÍVEL DEPOSITAR EM APENAS UMA CONTA POR VEZ!!!\n");
-            System.exit(0);
-        }
-        if(pessoa1.getDebito() > pessoa1.getValorConta() || pessoa2.getDebito() > pessoa2.getValorConta()){
-            System.out.println("\n\tERRO!\n\tO VALOR É MAIOR QUE O TOTAL DA CONTA!!!\n");
-            System.exit(0);
-        }
+         
+        pessoa2.setNome("Cris");
+        pessoa2.setSaldo(1000);
+        pessoa2.setDebito(200);
+         
+        if(pessoa1.getDebito() > 0 && pessoa2.getDebito() > 0){
+            System.out.println("\n\n\t\t\tVOCÊ ESTÁ TENTANDO TRANSFERIR PARA DUAS CONTAS AO MESMO TEMPO\n\n");
+        } else {
+            if(pessoa2.getSaldo() >= pessoa2.getDebito() && pessoa2.getDebito() > 0){
+              //depositando para o Yuri
+              pessoa1.setSaldo(pessoa1.getSaldo() + pessoa2.getDebito());//DEPOSITANDO
+              pessoa1.setRecebeu(pessoa2.getDebito());//DIZENDO QUANDO RECEBEU
+              pessoa2.setSaldo(pessoa2.getSaldo() - pessoa2.getDebito());//TIRANDO O VALOR DA OUTRA PESSOA
+              System.out.println(pessoa1);
+              System.out.println(pessoa2);
+           } else if(pessoa2.getDebito() > pessoa2.getSaldo()){
+               System.out.println("\n\nVALOR MUITO ALTO\n\n");
+           }
 
-            //Debito na conta da pessoa1
-            if (pessoa2.getValorConta() > pessoa2.getDebito()) {
-                pessoa1.setValorConta(pessoa1.getValorConta() + pessoa2.getDebito());
-                pessoa2.setValorConta(pessoa2.getValorConta() - pessoa2.getDebito());
-            }
-            //Debito na conta da pessoa2
-            if (pessoa1.getValorConta() > pessoa1.getDebito()) {
-                pessoa2.setValorConta(pessoa2.getValorConta() + pessoa1.getDebito());
-                pessoa1.setValorConta(pessoa1.getValorConta() - pessoa1.getDebito());
-            }
-        
-        
-        System.out.println(pessoa1);
-        System.out.println("-----------------------------------------");
-        System.out.println(pessoa2);
-
-        
-        
-        
-        
+           if(pessoa1.getSaldo() >= pessoa1.getDebito()&& pessoa1.getDebito() > 0){
+              //DEPOSITANDO PARA A CRIS
+              pessoa2.setSaldo(pessoa2.getSaldo() + pessoa1.getDebito());//DEPOSITANDO
+              pessoa2.setRecebeu(pessoa1.getDebito());//DIZENDO QUANDO RECEBEU
+              pessoa1.setSaldo(pessoa1.getSaldo() - pessoa1.getDebito());//TIRANDO O VALOR DA OUTRA PESSOA
+              System.out.println(pessoa1);
+              System.out.println(pessoa2);
+           } else if(pessoa1.getDebito() > pessoa1.getSaldo()){
+               System.out.println("\n\nVALOR MUITO ALTO\n\n");
+           }
+        }
         
         /*
             soma(2, 3);//imprima o resultado na tela
