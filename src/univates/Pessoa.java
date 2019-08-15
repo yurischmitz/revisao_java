@@ -11,13 +11,20 @@ package univates;
  */
 public class Pessoa {
    
+    private int codigo;
     private String nome;
-    private double saldo;
-    private double debito;
-    private double recebeu;
+    private String endereco;
+    private String telefone;
+    private double valorConta;
 
-    
-    
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -26,32 +33,47 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public double getSaldo() {
-        return saldo;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
-    public double getDebito() {
-        return debito;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setDebito(double debito) {
-        this.debito = debito;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    public double getRecebeu() {
-        return recebeu;
+    public double getValorConta() {
+        return valorConta;
     }
 
-    public void setRecebeu(double recebeu) {
-        this.recebeu = recebeu;
+    public void setValorConta(double valorConta) {
+        this.valorConta = valorConta;
     }
     
+    public boolean credito(double valorTransferencia){
+        if(valorTransferencia <= this.valorConta){
+            this.valorConta -= valorTransferencia;
+            System.out.println("Transferência realizada.");
+            return true;
+        }else{
+            System.out.println("Transferência não realizada.");
+            return false;
+        }
+    }
     
+    public void debito(double valor){
+        this.valorConta += valor;
+    }
+    
+    @Override
     public String toString(){
-        return "Nome: " + this.nome + "\nSaldo: " + this.saldo + "\nDepositou: " + this.debito + "\nRecebeu: " + this.recebeu + "\n-------------------";
+        return "Nome: " + nome + "\nSaldo: " + valorConta;
     }
 }
