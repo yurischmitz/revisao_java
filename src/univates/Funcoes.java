@@ -75,6 +75,18 @@ public class Funcoes {
         resultado = resultado.substring(0, resultado.length() - 1);
         return resultado;
     }
-   
     
+    public static boolean validar(String valor){
+        try{
+            double valor1 = Double.parseDouble(valor);
+            if(valor1 > 400 || valor1 == 0){
+                System.out.println("VALOR NÃO ACEITO!");
+                return false;
+            }else{
+                return true;
+            }
+        } catch (Exception e){
+            return false;
+        }
+    } 
 }

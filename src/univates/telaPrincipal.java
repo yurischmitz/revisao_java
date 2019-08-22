@@ -59,7 +59,6 @@ public class telaPrincipal extends javax.swing.JFrame {
         lblChequeEspecial2 = new javax.swing.JLabel();
         txtTransferencia1 = new javax.swing.JTextField();
         txtTransferencia2 = new javax.swing.JTextField();
-        txtImprimir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -102,16 +101,14 @@ public class telaPrincipal extends javax.swing.JFrame {
 
         lblChequeEspecial2.setText("Cheque Especial");
         getContentPane().add(lblChequeEspecial2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, -1, -1));
-        getContentPane().add(txtTransferencia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 80, -1));
-        getContentPane().add(txtTransferencia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 80, -1));
 
-        txtImprimir.setText("Imprimir");
-        txtImprimir.addActionListener(new java.awt.event.ActionListener() {
+        txtTransferencia1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtImprimirActionPerformed(evt);
+                txtTransferencia1ActionPerformed(evt);
             }
         });
-        getContentPane().add(txtImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, -1, -1));
+        getContentPane().add(txtTransferencia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 80, -1));
+        getContentPane().add(txtTransferencia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 80, -1));
 
         setSize(new java.awt.Dimension(549, 326));
         setLocationRelativeTo(null);
@@ -119,33 +116,37 @@ public class telaPrincipal extends javax.swing.JFrame {
 
     private void btnTransferencia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferencia1ActionPerformed
         // TODO add your handling code here:
-        try{
-            double transf = Double.parseDouble(txtTransferencia1.getText());
-            if(pessoa1.credito(transf) == true){
-                pessoa2.debito(transf);
+        if(Funcoes.validar(txtTransferencia1.getText())){
+            try{
+                double transf = Double.parseDouble(txtTransferencia1.getText());
+                if(pessoa1.credito(transf) == true){
+                    pessoa2.debito(transf);
+                }
+                lblValor1.setText(String.valueOf(pessoa1.getValorConta()));
+                lblValor2.setText(String.valueOf(pessoa2.getValorConta()));
+                txtTransferencia1.setText("0");
+
+            }catch(Exception ex){
+                System.out.println("Erro: " + ex.getMessage());
             }
-            lblValor1.setText(String.valueOf(pessoa1.getValorConta()));
-            lblValor2.setText(String.valueOf(pessoa2.getValorConta()));
-            txtTransferencia1.setText("0");
-        
-        }catch(Exception ex){
-            System.out.println("Erro: " + ex.getMessage());
         }
     }//GEN-LAST:event_btnTransferencia1ActionPerformed
 
     private void btnTransferencia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferencia2ActionPerformed
         // TODO add your handling code here:
-        try{
-            double transf = Double.parseDouble(txtTransferencia2.getText());
-            if(pessoa2.credito(transf) == true){
-                pessoa1.debito(transf);
+        if(Funcoes.validar(txtTransferencia2.getText())){
+            try{
+                double transf = Double.parseDouble(txtTransferencia2.getText());
+                if(pessoa2.credito(transf) == true){
+                    pessoa1.debito(transf);
+                }
+                lblValor1.setText(String.valueOf(pessoa1.getValorConta()));
+                lblValor2.setText(String.valueOf(pessoa2.getValorConta()));
+                txtTransferencia2.setText("0");
+
+            }catch(Exception ex){
+                System.out.println("Erro: " + ex.getMessage());
             }
-            lblValor1.setText(String.valueOf(pessoa1.getValorConta()));
-            lblValor2.setText(String.valueOf(pessoa2.getValorConta()));
-            txtTransferencia2.setText("0");
-        
-        }catch(Exception ex){
-            System.out.println("Erro: " + ex.getMessage());
         }
     }//GEN-LAST:event_btnTransferencia2ActionPerformed
 
@@ -155,9 +156,9 @@ public class telaPrincipal extends javax.swing.JFrame {
         txtTransferencia2.setText("0");
     }//GEN-LAST:event_formWindowOpened
 
-    private void txtImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImprimirActionPerformed
+    private void txtTransferencia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTransferencia1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtImprimirActionPerformed
+    }//GEN-LAST:event_txtTransferencia1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,7 +204,6 @@ public class telaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblNome2;
     private javax.swing.JLabel lblValor1;
     private javax.swing.JLabel lblValor2;
-    private javax.swing.JButton txtImprimir;
     private javax.swing.JTextField txtTransferencia1;
     private javax.swing.JTextField txtTransferencia2;
     // End of variables declaration//GEN-END:variables
