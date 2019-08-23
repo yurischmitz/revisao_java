@@ -76,17 +76,17 @@ public class Funcoes {
         return resultado;
     }
     
-    public static boolean validar(String valor){
+    public static boolean validarNumero(String numero){
         try{
-            double valor1 = Double.parseDouble(valor);
-            if(valor1 > 400 || valor1 == 0){
-                System.out.println("VALOR NÃO ACEITO!");
-                return false;
-            }else{
+            if(numero.matches("[0-9].*")){
                 return true;
+            }else{
+                return false;
             }
-        } catch (Exception e){
+            
+            
+        }catch(Exception ex){
             return false;
         }
-    } 
+    }
 }

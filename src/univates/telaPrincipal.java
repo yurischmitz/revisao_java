@@ -59,6 +59,7 @@ public class telaPrincipal extends javax.swing.JFrame {
         lblChequeEspecial2 = new javax.swing.JLabel();
         txtTransferencia1 = new javax.swing.JTextField();
         txtTransferencia2 = new javax.swing.JTextField();
+        btnMensagem = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -110,13 +111,21 @@ public class telaPrincipal extends javax.swing.JFrame {
         getContentPane().add(txtTransferencia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 80, -1));
         getContentPane().add(txtTransferencia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 80, -1));
 
+        btnMensagem.setText("Mensagem");
+        btnMensagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMensagemActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnMensagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
+
         setSize(new java.awt.Dimension(549, 326));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTransferencia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferencia1ActionPerformed
         // TODO add your handling code here:
-        if(Funcoes.validar(txtTransferencia1.getText())){
+        if(Funcoes.validarNumero(txtTransferencia1.getText())){
             try{
                 double transf = Double.parseDouble(txtTransferencia1.getText());
                 if(pessoa1.credito(transf) == true){
@@ -134,7 +143,7 @@ public class telaPrincipal extends javax.swing.JFrame {
 
     private void btnTransferencia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferencia2ActionPerformed
         // TODO add your handling code here:
-        if(Funcoes.validar(txtTransferencia2.getText())){
+        if(Funcoes.validarNumero(txtTransferencia2.getText())){
             try{
                 double transf = Double.parseDouble(txtTransferencia2.getText());
                 if(pessoa2.credito(transf) == true){
@@ -159,6 +168,16 @@ public class telaPrincipal extends javax.swing.JFrame {
     private void txtTransferencia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTransferencia1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTransferencia1ActionPerformed
+
+    private void btnMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMensagemActionPerformed
+        // TODO add your handling code here:
+        boolean resposta = CaixaDeDialogo.obterinstancia().pedirConfirmacao("Titulo", "Tem certeza?", 'p');
+        if(resposta){
+            CaixaDeDialogo.obterinstancia().exibirMensagem("RESPONDEU SIM");
+        }else{
+            CaixaDeDialogo.obterinstancia().exibirMensagem("RESPONDEU NÃO");
+        }
+    }//GEN-LAST:event_btnMensagemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,6 +215,7 @@ public class telaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMensagem;
     private javax.swing.JButton btnTransferencia1;
     private javax.swing.JButton btnTransferencia2;
     private javax.swing.JLabel lblChequeEspecial1;
