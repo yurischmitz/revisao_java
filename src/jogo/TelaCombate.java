@@ -5,8 +5,7 @@
  */
 package jogo;
 
-import java.util.Random;
-import funcoes.CaixaDeDialogo;
+import funcoes.*;
 
 /**
  *
@@ -20,25 +19,23 @@ public class TelaCombate extends javax.swing.JFrame {
     
     Personagem personagem;
     Inimigo inimigo;
-    String[] inimigos = {"Godzilla", "Inimigo 2"," Inimigo Final"};
+    String[] inimigos = {"Godzilla", "King Kong", "Dormamu", "Thanos"};
     int contInimigo = 0;
-    Random gerador = new Random();
     
     public TelaCombate() {
         initComponents();
         
-        personagem = new Personagem();
-        personagem.setNome("Yuri");
-        personagem.setVida(100);
-        personagem.setAtaque(10);
-        
-        inimigo = new Inimigo();
-        inimigo.setNome("Moke");
-        inimigo.setVida(100);
-        inimigo.setAtaque(10);
-        
+        gerarPersonagem();
         exibirPersonagem();
+        gerarInimigo();
         exibirInimigo();
+    }
+    
+    private void gerarPersonagem(){
+        personagem = new Personagem();
+        personagem.setNome("Moke");
+        personagem.setVida(1000);
+        personagem.setAtaque(15);
     }
     
     private void exibirPersonagem(){
@@ -48,46 +45,76 @@ public class TelaCombate extends javax.swing.JFrame {
     }
     
     private void exibirInimigo(){
-        try{
-            lblNomeInimigo.setText(inimigo.getNome());
-            lblVidaInimigo.setText(String.valueOf(inimigo.getVida()));
-            lblAtaqueInimigo.setText(String.valueOf(inimigo.getAtaque()));
-        } catch (Exception ex){
-            CaixaDeDialogo.obterinstancia().exibirMensagem(ex.getMessage().toString(), 'e');
-        }
+        lblNomeInimigo.setText(inimigo.getNome());
+        lblVidaInimigo.setText(String.valueOf(inimigo.getVida()));
+        lblAtaqueInimigo.setText(String.valueOf(inimigo.getAtaque()));
     }
     
     private void gerarInimigo(){
         
         try{
-            Random gerador = new Random();
-            inimigo.setAtaque(gerador.nextInt(35) + 1);
-            inimigo.setVida(gerador.nextInt(200) + 1);
-        } catch (Exception ex){
-            CaixaDeDialogo.obterinstancia().exibirMensagem(ex.getMessage().toString(), 'e');
-        }
-        /*inimigo = new Inimigo();
+        inimigo = new Inimigo();
         inimigo.setNome(inimigos[contInimigo]);
         inimigo.setVida(200);
-        inimigo.setAtaque(300);
+        inimigo.setAtaque(20);
         
         if(contInimigo < inimigos.length){
             contInimigo += 1;
-        } else {
+        }else{
             contInimigo = 0;
-        }*/
-        
+        }
+        }catch(Exception e){
+            boolean resposta = CaixaDeDialogo.obterinstancia().pedirConfirmacao("Deseja Jogar Novamente?", "VOCÊ GANHOU!!!", 'p');
+            if(resposta){
+                gerarPersonagem();
+                contInimigo = 0;
+                gerarInimigo();
+            }else{
+                System.exit(0);
+            }
+        }
     }
     
-    public void ataque(){
-        int ataque = 0;
-        int valorDado = gerador.nextInt(20) + 1;
-        if(valorDado> 13){
-            ataque = personagem.getAtaque() / 2;
-    }
-    
-    }
+    private void atacar(){
+        int ataque = personagem.getAtaque();
+        int vida = inimigo.getVida();
+        /*
+        1,2 = inimigo ataca
+        3 = ataque normal
+        4 = ataque + 10%
+        5 = ataque * 2
+        */
+        int dado = Funcoes.sortearNumero(5);
+        if(dado == 1 || dado == 2){
+            personagem.setVida(personagem.getVida() - inimigo.getAtaque());
+            lblNomeAtacante.setText("Atacante: " + inimigo.getNome());
+            lblTipoAtaque.setText("Ataque normal, tirando " + ataque + " de vida");
+            
+        }else if(dado == 3){
+            inimigo.setVida(inimigo.getVida() - ataque);
+            lblNomeAtacante.setText("Atacante: " + personagem.getNome());
+            lblTipoAtaque.setText("Ataque normal, tirando " + ataque + " de vida");
+            
+        }else if(dado == 4){ //10% a mais
+            vida = (int) (inimigo.getVida() - (ataque * 1.1));
+            inimigo.setVida(vida);
+            lblNomeAtacante.setText("Atacante: " + personagem.getNome());
+            lblTipoAtaque.setText("Ataque com 10%, tirando " + (int)(ataque * 1.1) + " de vida");
+            
+        }else if(dado == 5) {//ataque x 2
+            inimigo.setVida(inimigo.getVida() - (ataque * 2));
+            personagem.setAtaque((int) (ataque * 1.2));
+            lblNomeAtacante.setText("Atacante: " + personagem.getNome());
+            lblTipoAtaque.setText("Ataque x2, tirando " + ataque * 2 + " de vida");
+        }else if(dado == 6) {
 
+        }else if(dado == 7) {
+
+        }else{//ataque x 2
+            
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -110,6 +137,8 @@ public class TelaCombate extends javax.swing.JFrame {
         lblVidaInimigo = new javax.swing.JLabel();
         lblAtaqueInimigo = new javax.swing.JLabel();
         btnAtaque = new javax.swing.JButton();
+        lblNomeAtacante = new javax.swing.JLabel();
+        lblTipoAtaque = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -156,19 +185,39 @@ public class TelaCombate extends javax.swing.JFrame {
                 btnAtaqueActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAtaque, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 360, -1));
+        getContentPane().add(btnAtaque, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 420, -1));
 
-        setSize(new java.awt.Dimension(451, 207));
+        lblNomeAtacante.setText("...");
+        getContentPane().add(lblNomeAtacante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 210, -1));
+
+        lblTipoAtaque.setText("...");
+        getContentPane().add(lblTipoAtaque, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 420, -1));
+
+        setSize(new java.awt.Dimension(451, 252));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAtaqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtaqueActionPerformed
         // TODO add your handling code here:
-        inimigo.setVida(inimigo.getVida() - personagem.getAtaque());
-        if(inimigo.getVida()<=0){
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Inimigo Morto",'i');
+        atacar();
+        
+        if(personagem.getVida() <= 0){ //VERIFICA SE PRECISA O PERSONAGEM MORREU
+            boolean resposta = CaixaDeDialogo.obterinstancia().pedirConfirmacao("Você perdeu, Deseja Sair?", "GAME OVER!!!", 'p');
+            if(resposta){
+                System.exit(0);
+            }else{
+                gerarPersonagem();
+                contInimigo = 0;
+                gerarInimigo();
+            }
+        }
+        
+        if(inimigo.getVida() <= 0){ //VERIFICA SE PRECISA GERAR OUTRO INIMIGO
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Inimigo derrotado, PARABÉNS!!!", 'i');
             gerarInimigo();
         }
+        
+        exibirPersonagem();
         exibirInimigo();
     }//GEN-LAST:event_btnAtaqueActionPerformed
 
@@ -216,10 +265,12 @@ public class TelaCombate extends javax.swing.JFrame {
     private javax.swing.JLabel lblAtaque2;
     private javax.swing.JLabel lblAtaqueInimigo;
     private javax.swing.JLabel lblAtaquePersonagem;
+    private javax.swing.JLabel lblNomeAtacante;
     private javax.swing.JLabel lblNomeInimigo;
     private javax.swing.JLabel lblNomePersonagem;
     private javax.swing.JLabel lblOponente;
     private javax.swing.JLabel lblPersonagem;
+    private javax.swing.JLabel lblTipoAtaque;
     private javax.swing.JLabel lblVidaAtual;
     private javax.swing.JLabel lblVidaAtual2;
     private javax.swing.JLabel lblVidaInimigo;
