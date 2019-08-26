@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package univates;
+package projeto;
+
+import funcoes.Funcoes;
+import funcoes.CaixaDeDialogo;
 
 /**
  *
@@ -125,19 +128,22 @@ public class telaPrincipal extends javax.swing.JFrame {
 
     private void btnTransferencia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferencia1ActionPerformed
         // TODO add your handling code here:
-        if(Funcoes.validarNumero(txtTransferencia1.getText())){
-            try{
+        try{
+            if(Funcoes.validarNumero(txtTransferencia1.getText())){
                 double transf = Double.parseDouble(txtTransferencia1.getText());
                 if(pessoa1.credito(transf) == true){
                     pessoa2.debito(transf);
+                    Funcoes.mostrarMensagem("Sucesso!");
                 }
                 lblValor1.setText(String.valueOf(pessoa1.getValorConta()));
                 lblValor2.setText(String.valueOf(pessoa2.getValorConta()));
                 txtTransferencia1.setText("0");
-
-            }catch(Exception ex){
-                System.out.println("Erro: " + ex.getMessage());
+            }else{
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Informe um valor válido!!!", 'e');
             }
+        
+        }catch(Exception ex){
+            System.out.println("Erro: " + ex.getMessage());
         }
     }//GEN-LAST:event_btnTransferencia1ActionPerformed
 

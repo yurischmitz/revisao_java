@@ -3,15 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package univates;
+package funcoes;
+
+import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author yuri.schmitz
+ * @author yuris
  */
 public class Funcoes {
-    
-    //método que soma 2 números
+    public static void mostrarMensagem(String mensagem){
+        try{
+            JOptionPane.showMessageDialog(null, mensagem);
+            
+        }catch(Exception ex){
+            
+        }
+    }
     /*
         modificador de acesso (public, private)
         public = torna o método disponível para todo o projeto
@@ -63,11 +72,19 @@ public class Funcoes {
         return resultado;
     }
     
+    public static int sortearNumero(int maximo){
+        
+        Random aleatorio = new Random();
+        return aleatorio.nextInt(maximo) + 1;
+    }
+    
     public static String sortearNumeros(int quantidade, int maximo){
         String resultado = "";
         int numero = 0;
+        Random aleatorio = new Random();
         for(int i = 0; i < quantidade; i++){
-            numero = (int) (Math.random() * maximo) + 1;
+            //numero = (int) (Math.random() * maximo) + 1;
+            numero = aleatorio.nextInt(maximo) + 1;
             resultado += numero + ",";
         }
         
@@ -89,4 +106,5 @@ public class Funcoes {
             return false;
         }
     }
+    
 }

@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package univates;
+package projeto;
 
 import java.util.Random;
+import funcoes.Funcoes;
+import funcoes.Funcoes;
 
 /**
  *

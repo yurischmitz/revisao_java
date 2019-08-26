@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package JogoRPG;
+package jogo;
 
 /**
  *
  * @author yuri.schmitz
  */
-public class Personagem {
+public class Inimigo {
     
     private String nome;
     private int vida;
@@ -38,6 +38,5 @@ public class Personagem {
     public void setAtaque(int ataque) {
         this.ataque = ataque;
     }
-    
     
 }
