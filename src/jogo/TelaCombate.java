@@ -19,7 +19,7 @@ public class TelaCombate extends javax.swing.JFrame {
     
     Personagem personagem;
     Inimigo inimigo;
-    String[] inimigos = {"Godzilla", "King Kong", "Dormamu", "Thanos"};
+    String[] inimigos = {"Godzilla", "Thanos", "King Kong"};
     int contInimigo = 0;
     
     public TelaCombate() {
@@ -34,7 +34,7 @@ public class TelaCombate extends javax.swing.JFrame {
     private void gerarPersonagem(){
         personagem = new Personagem();
         personagem.setNome("Moke");
-        personagem.setVida(1000);
+        personagem.setVida(500);
         personagem.setAtaque(15);
     }
     
@@ -69,6 +69,11 @@ public class TelaCombate extends javax.swing.JFrame {
                 gerarPersonagem();
                 contInimigo = 0;
                 gerarInimigo();
+                exibirPersonagem();
+                exibirInimigo();
+                lblNomeAtacante.setText("...");
+                lblTipoAtaque.setText("...");
+                lblDado.setText("");
             }else{
                 System.exit(0);
             }
@@ -102,42 +107,62 @@ public class TelaCombate extends javax.swing.JFrame {
         */
         int dado = Funcoes.sortearNumero(8);
         lblDado.setText("Dado caiu na posição " + dado);
-        if(dado == 1 || dado == 2){//ataque normal do inimigo
+        switch (dado) {
+            case 1:
+                //ataque normal do inimigo
                 personagem.setVida(personagem.getVida() - inimigo.getAtaque());
                 lblNomeAtacante.setText("Atacante: " + inimigo.getNome());
                 lblTipoAtaque.setText("Ataque normal, tirando " + inimigo.getAtaque() + " de vida");
-        }else if(dado == 3){//ataque poderoso do inimigo
+                break;
+            case 2:
+                //ataque normal do inimigo
+                personagem.setVida(personagem.getVida() - inimigo.getAtaque());
+                lblNomeAtacante.setText("Atacante: " + inimigo.getNome());
+                lblTipoAtaque.setText("Ataque normal, tirando " + inimigo.getAtaque() + " de vida");
+                break;
+            case 3:
+                //ataque poderoso do inimigo
                 personagem.setVida(personagem.getVida() - (inimigo.getAtaque() * 3));
                 lblNomeAtacante.setText("Atacante: " + inimigo.getNome());
                 lblTipoAtaque.setText("Ataque poderoso, tirando " + inimigo.getAtaque() * 3 + " de vida");
                 inimigo.setAtaque((int) (inimigo.getAtaque() * 1.1));
                 personagem.setAtaque(personagem.getAtaque() - 1);
                 validarAtaque();
-        }else if(dado == 4){//ataque normal
+                break;
+            case 4:
+                //ataque normal
                 inimigo.setVida(inimigo.getVida() - ataque);
                 lblNomeAtacante.setText("Atacante: " + personagem.getNome());
                 lblTipoAtaque.setText("Ataque normal, tirando " + ataque + " de vida");
-        }else if(dado == 5){//10 % a mais
+                break;
+            case 5:
+                //10 % a mais
                 vida = (int) (inimigo.getVida() - (ataque * 1.1));
                 inimigo.setVida(vida);
                 lblNomeAtacante.setText("Atacante: " + personagem.getNome());
                 lblTipoAtaque.setText("Ataque com 10%, tirando " + (int)(ataque * 1.1) + " de vida");
-        }else if(dado == 6){//ataque x2
+                break;
+            case 6:
+                //ataque x2
                 inimigo.setVida(inimigo.getVida() - (ataque * 2));
                 lblNomeAtacante.setText("Atacante: " + personagem.getNome());
                 lblTipoAtaque.setText("Ataque x2, tirando " + ataque * 2 + " de vida");
                 personagem.setAtaque((int) (ataque * 1.2));
-        }else if(dado == 7){//ataque atorduante do personagem
+                break;
+            case 7:
+                //ataque atorduante do personagem
                 inimigo.setVida(inimigo.getVida() - (inimigo.getAtaque() * 3));
                 lblNomeAtacante.setText("Atacante: " + personagem.getNome());
                 lblTipoAtaque.setText("Ataque atorduante, tirando " + personagem.getAtaque() * 3 + " de vida");
                 inimigo.setAtaque(inimigo.getAtaque() - 1);
                 validarAtaque();
-        }else{
+                break;
+            case 8:
                 personagem.setVida(personagem.getVida() + 50);
                 inimigo.setVida(inimigo.getVida() + 50);
                 lblNomeAtacante.setText(personagem.getNome() + " e " + inimigo.getNome());
                 lblTipoAtaque.setText("Ganharam 50 de vida cada");
+                break;
         }
     }
     
