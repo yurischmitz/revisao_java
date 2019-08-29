@@ -277,6 +277,11 @@ public class TelaCombate extends javax.swing.JFrame {
                 gerarPersonagem();
                 contInimigo = 0;
                 gerarInimigo();
+                exibirPersonagem();
+                exibirInimigo();
+                lblNomeAtacante.setText("...");
+                lblTipoAtaque.setText("...");
+                lblDado.setText("");
             }
         }
         
